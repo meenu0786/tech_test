@@ -1,0 +1,66 @@
+<style>
+  h3 {
+    color: blue;
+    font-family: verdana;
+    font-size: 150%;
+    padding: 16px 32px;
+
+  }
+
+  input[type=button],
+  input[type=submit],
+  input[type=reset] {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+
+  .container {
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .formbox {
+    background-color: #f2f2f2;
+    border: solid 5px rgb(206, 206, 206);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 40px;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .formbox p label {
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .formbox p input {
+    width: 100%;
+    border: solid 1px #b4b4b4;
+    padding: 8px 12px;
+    margin-top: 8px;
+  }
+</style>
+<div class="container">
+  <div class="formbox">
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ meter_form.as_p }}
+      {{ building_form.as_p }}
+      {{ half_hourly_form.as_p }}
+      <input type="submit" class="btn btn-success" value="Submit">
+    </form>
+  </div>
+</div>

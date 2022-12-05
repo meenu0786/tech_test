@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            font-family: verdana;
+            font-size: 100%;
+        }
+
+        .tablebox {
+            background-color: #f2f2f2;
+            border: solid 5px rgb(206, 206, 206);
+            padding: 20px 40px;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .tablebox h1 {
+            font-family: verdana;
+            border-bottom: solid 1px rgb(206, 206, 206);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .tablebox table {
+            width: 100%;
+        }
+
+        .tablebox thead tr th {
+            background-color: aquamarine;
+            padding: 10px;
+        }
+
+        .tablebox tbody tr td {
+            border-top: solid 1px rgb(206, 206, 206);
+            padding: 10px;
+        }
+
+        .tablebox tbody tr td a {
+            background-color: darkgreen;
+            color: #fff;
+            font-size: 12px;
+            padding: 6px 10px;
+            text-decoration: none;
+            margin: auto;
+        }
+
+        .tablebox tbody tr td:last-child,
+        .tablebox tbody tr td:first-child,
+        .tablebox tbody tr td:nth-child(2) {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tablebox">
+        <h1>Table Data</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Meter ID</th>
+                    <th>Fuel</th>
+                    <th>Unit Info.</th>
+                    <th>Half Hourly Info.</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% if obj %}
+                {% for meter in obj %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ meter.id }}</td>
+                    <td>{{ meter.fuel }}</td>
+                    <td>{{ meter.unit }}</td>
+                    <td><a href="/list_buildings/{{meter.building.id}}/meters/{{meter.id}}/list_half_hourly_data/"> More
+                            Info.</a>
+                    </td>
+                </tr>
+                <!-- end for and if -->
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

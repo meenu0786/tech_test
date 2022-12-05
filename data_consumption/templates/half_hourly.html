@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            font-family: verdana;
+            font-size: 100%;
+        }
+
+        .tablebox {
+            background-color: #f2f2f2;
+            border: solid 5px rgb(206, 206, 206);
+            padding: 20px 40px;
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .tablebox h1 {
+            font-family: verdana;
+            border-bottom: solid 1px rgb(206, 206, 206);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 22px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tablebox h1 a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .tablebox table {
+            width: 100%;
+        }
+
+        .tablebox thead tr th {
+            background-color: aquamarine;
+            padding: 10px;
+        }
+
+        .tablebox tbody tr td {
+            border-top: solid 1px rgb(206, 206, 206);
+            padding: 10px;
+        }
+
+        .tablebox tbody tr td a {
+            background-color: darkgreen;
+            color: #fff;
+            font-size: 12px;
+            padding: 6px 10px;
+            text-decoration: none;
+            margin: auto;
+        }
+
+        .tablebox tbody tr td:first-child,
+        .tablebox tbody tr td:nth-child(2) {
+            text-align: center;
+        }
+
+        .green-btn {
+            background-color: darkgreen;
+            color: #fff !important;
+            font-size: 12px;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tablebox">
+        {% if obj.meter_unit == "kWh" %}
+        <h1>Table Data <a class="green-btn" href="/meter/{{obj.meter_id}}/show_graph/"> Show Graph</a></h1>
+        {% else %}
+        <h1>Table Data</h1>
+        {%endif%}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Usage</th>
+                    <th>Reading Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% if obj.queryset %}
+                {% for half_hourly in obj.queryset %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ half_hourly.consumption }}</td>
+                    <td>{{ half_hourly.reading_date_time }}</td>
+                    </td>
+                </tr>
+                <!-- end for and if -->
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
